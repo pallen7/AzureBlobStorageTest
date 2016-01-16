@@ -1,0 +1,21 @@
+http://<storage-account-name>.blob.core.windows.net/<container-name>/<blob-name>  
+
+A container name must be all lowercase.
+Container names must start with a letter or number, and can contain only letters, numbers, and the dash (-) character.
+Every dash (-) character must be immediately preceded and followed by a letter or number; consecutive dashes are not permitted in container names.
+Container names must be from 3 through 63 characters long.
+
+Connection String:
+<configuration>
+    <appSettings>
+        <add key="StorageConnectionString" value="DefaultEndpointsProtocol=https;AccountName=account-name;AccountKey=account-key" />
+    </appSettings>
+</configuration>
+
+Azure referencing: https://myaccount.blob.core.windows.net/mycontainer/myblob.txt
+Emulator reference: http://127.0.0.1:10000/myaccount/mycontainer/myblob.txt
+
+Service Endpoints:
+Blob Service: http://127.0.0.1:10000/<account-name>/<resource-path>
+Queue Service: http://127.0.0.1:10001/<account-name>/<resource-path>
+Table Service: http://127.0.0.1:10002/<account-name>/<resource-path>
