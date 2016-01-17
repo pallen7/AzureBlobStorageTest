@@ -7,8 +7,9 @@
 
 <h2>Azure Blob Containers</h2>
 
-    @foreach (var item in Model.containers)
+    @foreach (var item in Model.blobs)
     {
         <h3>@item</h3>
+        <img src="@item" />
     }
 
