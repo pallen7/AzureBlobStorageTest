@@ -1,5 +1,4 @@
-﻿@using BlobStorageTest.Controllers
-@model BlobViewModel
+﻿@model IEnumerable<string>
 
 @{
     ViewBag.Title = "Index";
@@ -7,10 +6,16 @@
 
 <h2>Azure Blob Containers</h2>
 
-    @foreach (var item in Model.blobs)
+    @using (Html.BeginForm("CreateContainer", "Home", FormMethod.Post))
     {
-        <h3>@item.blob_name</h3>
-        <h4>@Html.ActionLink("remove","Remove", new { item_name = item.blob_name })</h4>
-        <img src="@item.blob_uri" />
+        @Html.TextBox("container_name")
+        <input type="submit" value="Create">
+    }
+    
+    @foreach (var item in Model)
+    {
+        <h3>@item</h3>
+        <h4>@Html.ActionLink("remove", "RemoveContainer", new { item_name = item })</h4>
+        <h4>@Html.ActionLink("view", "Index", "Container", new { container_name = item }, null)</h4>
     }
 

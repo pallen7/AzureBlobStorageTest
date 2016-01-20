@@ -1,0 +1,14 @@
+﻿@using BlobStorageTest.ViewModels
+@model ContainerViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Azure Blob Containers</h2>
+<h3>Container: @Model.container_name</h3>
+
+@foreach (var item in Model.blobs)
+{
+    <h4>@item.blob_name</h4>
+}
