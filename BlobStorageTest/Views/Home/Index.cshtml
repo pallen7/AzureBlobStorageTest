@@ -9,7 +9,8 @@
 
     @foreach (var item in Model.blobs)
     {
-        <h3>@item</h3>
-        <img src="@item" />
+        <h3>@item.blob_name</h3>
+        <h4>@Html.ActionLink("remove","Remove", new { item_name = item.blob_name })</h4>
+        <img src="@item.blob_uri" />
     }
 
