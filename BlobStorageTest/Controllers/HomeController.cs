@@ -39,14 +39,6 @@ namespace BlobStorageTest.Controllers
 
         public ActionResult Index()
         {
-            //using (var image = System.IO.File.OpenRead(Server.MapPath("~/test_images/All Pictures 20141025 229.jpg")))
-            //{
-            //    var blob = container.GetBlockBlobReference("picture1.jpg");
-            //    blob.UploadFromStream(image);
-            //}
-
-            //var view_model = BlobViewModels.GetBlobViewModel(containers);
-
             var containers = cloud_store.list_containers();
 
             return View(containers);

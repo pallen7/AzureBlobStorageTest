@@ -30,7 +30,23 @@ namespace BlobStorageTest
                 .Select(x => (CloudBlockBlob)x)
                 ;
 
-        } 
+        }
+
+        public void upload_blob(string container_name, string file_name, System.IO.Stream image)
+        {
+            var container = blob_client.GetContainerReference(container_name);
+
+            if (!container.Exists())
+            {
+                throw new StorageException(string.Format("Invalid container name: {0}", container_name));
+            }
+
+            if (image != null && image.Length > 0)
+            {
+                var blob = container.GetBlockBlobReference(file_name);
+                blob.UploadFromStream(image);
+            }
+        }
 
         public CloudBlobContainer create_container(string container_name)
         {

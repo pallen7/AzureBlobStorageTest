@@ -5,10 +5,26 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Azure Blob Containers</h2>
-<h3>Container: @Model.container_name</h3>
+<div class="container">
 
-@foreach (var item in Model.blobs)
-{
-    <h4>@item.blob_name</h4>
-}
+    <h2>Azure Blob Containers</h2>
+    <h3>Container: @Model.container_name</h3>
+
+    @using (Html.BeginForm("UploadImage", "Container", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="file" name="image" />
+        <input type="hidden" name="container_name" value="@Model.container_name" />
+        <input type="submit" />
+    }
+
+    <div class="row">
+        
+        @foreach (var item in Model.blobs)
+        {
+            <div class="col-sm-4" style="background-color:red">
+                <h4>@item.blob_name</h4>
+                <img src="@item.blob_uri" class="img-responsive" style="" />
+            </div>
+        }
+    </div>
+</div>
