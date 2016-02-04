@@ -10,7 +10,6 @@ namespace BlobStorageTest
 {
     public class AzureCloudStorage
     {
-        // List images (container)
         // Delete image (container and name)
 
         public IEnumerable<CloudBlockBlob> list_blobs(string container_name)
@@ -30,6 +29,26 @@ namespace BlobStorageTest
                 .Select(x => (CloudBlockBlob)x)
                 ;
 
+        }
+
+        public void remove_blob(string container_name, string image_name)
+        {
+            // Retrieve a reference to the container
+            CloudBlobContainer container = blob_client.GetContainerReference(container_name);
+
+            if (!container.Exists())
+            {
+                throw new StorageException(string.Format("Invalid container name: {0}", container_name));
+            }
+
+            var blob = container.GetBlockBlobReference(image_name);
+
+            if (blob == null)
+            {
+                throw new StorageException(string.Format("Invalid image name: {0}", image_name));
+            }
+
+            blob.Delete();
         }
 
         public void upload_blob(string container_name, string file_name, System.IO.Stream image)

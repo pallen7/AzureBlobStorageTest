@@ -24,6 +24,7 @@
             <div class="col-sm-4" style="background-color:red">
                 <h4>@item.blob_name</h4>
                 <img src="@item.blob_uri" class="img-responsive" style="" />
+                <h4>@Html.ActionLink("remove", "RemoveImage", new { container_name = Model.container_name, image_name = item.blob_name })</h4>
             </div>
         }
     </div>
